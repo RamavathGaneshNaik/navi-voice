@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navi-Voice Prototype</title>
+    
+    <!-- 1. Load Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Load TensorFlow.js and the COCO-SSD model -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@latest/dist/coco-ssd.min.js"></script>
+    
+    <!-- 3. Link our custom stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center font-sans p-4">
+
+    <div class="w-full max-w-2xl flex flex-col items-center">
+        <!-- Title -->
+        <h1 class="text-3xl font-bold mb-4">Navi-Voice</h1>
+        
+        <!-- Context-Aware Engine (Simulation) -->
+        <div class="mb-4 p-3 bg-gray-800 rounded-lg shadow-lg w-full">
+            <h2 class="text-lg font-semibold text-center mb-3">Real-Time Object Detection and Navigation System for the Visually Impaired</h2>
+            <div class="flex justify-center space-x-2">
+                <button id="btn-outdoor" class="context-btn active-context px-4 py-2 bg-blue-600 rounded-md font-medium hover:bg-blue-700 transition-all">
+                    Outdoor Navigation
+                </button>
+                <button id="btn-indoor" class="context-btn px-4 py-2 bg-gray-700 rounded-md font-medium hover:bg-gray-600 transition-all">
+                    Indoor Exploration
+                </button>
+                <button id="btn-identify" class="context-btn px-4 py-2 bg-gray-700 rounded-md font-medium hover:bg-gray-600 transition-all">
+                    Object Identification
+                </button>
+            </div>
+        </div>
+
+        <!-- Video and Canvas Container -->
+        <div class="video-container w-full max-w-2xl bg-gray-800 rounded-lg shadow-inner overflow-hidden border-4 border-gray-700" id="container-border">
+            <video id="webcam" autoplay muted playsinline></video>
+            <canvas id="canvas"></canvas>
+            <!-- Status Message -->
+            <div id="status" class="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-20">
+                <p class="text-xl font-medium">Loading model and starting webcam...</p>
+            </div>
+        </div>
+
+        <!-- Feedback Engine Display -->
+        <div class="mt-4 p-3 bg-gray-800 rounded-lg shadow-lg w-full">
+            <h2 class="text-lg font-semibold text-center mb-2">Feedback Engine</h2>
+            <div class="text-center bg-gray-700 p-3 rounded-md">
+                <span class="text-gray-400">Last Alert:</span>
+                <span id="last-spoken" class="text-lg font-medium text-green-400">None</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Link our custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
